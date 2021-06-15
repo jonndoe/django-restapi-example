@@ -59,3 +59,16 @@ def test_add_dogbook_invalid_json_keys(client):
 
     dogbooks = Dogbook.objects.all()
     assert len(dogbooks) == 0
+
+
+@pytest.mark.django_db
+def test_get_single_dogbook(client):
+    dogbook = Dogbook.objects.create(title="Sibirskaya Taksa", field="pravilniy uhod", year="2005")
+    resp = client.get(f"/api/dogbooks/{dogbook.id}/")
+    assert resp.status_code == 200
+    assert resp.data["title"] == "Sibirskaya Taksa"
+
+
+def test_get_single_dogbook_incorrect_id(client):
+    resp = client.get(f"/api/dogbooks/gogogo/")
+    assert resp.status_code == 404
