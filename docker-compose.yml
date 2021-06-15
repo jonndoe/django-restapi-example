@@ -1,0 +1,12 @@
+version: '3.8'
+
+services:
+  dogbooks:
+    build: ./app-restapi
+    command: python manage.py runserver 0.0.0.0:8000
+    volumes:
+      - ./app-restapi/:/usr/src/app/
+    ports:
+      - 8001:8000
+    env_file:
+      - ./app-restapi/.env.dev
