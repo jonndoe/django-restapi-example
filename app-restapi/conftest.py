@@ -1,5 +1,7 @@
-# This is file to set test databases to use with pytest
+# This is file to setup test databases to use with pytest
 # Check out All You Need to Know to Start Using Fixtures in Your pytest Code
+
+"""
 import os
 
 from django.conf import settings
@@ -20,3 +22,4 @@ def django_db_setup():
         "USER": os.environ["DB_TEST_USER"],
         "PASSWORD": os.environ["DB_TEST_PASSWORD"],
     }
+"""
