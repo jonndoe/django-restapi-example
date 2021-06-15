@@ -8,6 +8,11 @@ from .serializers import DogbookSerializer
 
 
 class DogbookList(APIView):
+    def get(self, request, format=None):
+        dogbooks = Dogbook.objects.all()
+        serializer = DogbookSerializer(dogbooks, many=True)
+        return Response(serializer.data)
+
     def post(self, request, format=None):
         serializer = DogbookSerializer(data=request.data)
         if serializer.is_valid():

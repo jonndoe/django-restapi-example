@@ -1,0 +1,35 @@
+[
+  {
+    "model": "dogbooks.dogbook",
+    "pk": 1,
+    "fields": {
+      "title": "Kak trenirovat Ovcharky",
+      "field": "vospitanie",
+      "year": "2003",
+      "created_date": "2021-02-07T14:07:13.540Z",
+      "updated_date": "2021-02-07T14:07:13.540Z"
+    }
+  },
+  {
+    "model": "dogbooks.dogbook",
+    "pk": 2,
+    "fields": {
+      "title": "Pravilnoe kormleniy Buldoga",
+      "field": "kormlenie",
+      "year": "2004",
+      "created_date": "2021-01-07T14:07:13.540Z",
+      "updated_date": "2021-01-07T14:07:13.540Z"
+    }
+  },
+  {
+    "model": "dogbooks.dogbook",
+    "pk": 3,
+    "fields": {
+      "title": "Kak vibrat sobaku",
+      "field": "pokupka",
+      "year": "2006",
+      "created_date": "2021-04-07T14:07:13.540Z",
+      "updated_date": "2021-04-07T14:07:13.540Z"
+    }
+  }
+]
