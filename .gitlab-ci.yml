@@ -39,10 +39,14 @@ test:
     CI_DEBUG_TRACE: "true"
   script:
     - cd app-restapi
-    - pytest -p no:warnings --cov=.
+    - python3.9 -m venv env
+    - source env/bin/activate
+    - pip install -r requirements.txt
+    - pip install black==20.8b1 flake8===3.8.4 isort==5.7.0 pytest==6.2.1 pytest-django==4.1.0
+    - pytest -p no:warnings
     - flake8 .
-    - black --check --exclude=migrations .
-    - isort . --check-only
+    - black . --check --exclude="migrations|env"
+    - isort . --check-only --skip env
 
 deploy:
   stage: deploy
