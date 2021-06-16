@@ -2,5 +2,5 @@ from django.http import JsonResponse
 
 
 def sayhi(request):
-    data = {"sayhi": "hihihi!"}
+    data = {"sayhi": "hihihi!!!"}
     return JsonResponse(data)

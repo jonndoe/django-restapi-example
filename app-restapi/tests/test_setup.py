@@ -20,4 +20,4 @@ def test_sayhi(client):
 
     # Then   -  the expected changes based on the behavior
     assert response.status_code == 200
-    assert content["sayhi"] == "hihihi!"
+    assert content["sayhi"] == "hihihi!!!"
