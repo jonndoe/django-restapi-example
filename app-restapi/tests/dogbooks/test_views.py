@@ -125,19 +125,15 @@ def test_update_dogbook_incorrect_id(client):
 
 
 @pytest.mark.django_db
-def test_update_dogbook_invalid_json(client, add_dogbook):
-    dogbook = add_dogbook(title="Ovcharka Kavkaskaya", field="dressirovka", year="1998")
-    resp = client.put(f"/api/dogbooks/{dogbook.id}/", {}, content_type="application/json")
-    assert resp.status_code == 400
-
-
-@pytest.mark.django_db
-def test_update_dogbook_invalid_json_keys(client, add_dogbook):
-    dogbook = add_dogbook(title="Ovcharka Kavkaskaya", field="dressirovka", year="1998")
-
+@pytest.mark.parametrize("add_dogbook, payload, status_code", [
+    ["add_dogbook", {}, 400],
+    ["add_dogbook",{"title": "Ovcharka Kavkaskaya", "field": "kormlenie"}, 400],
+], indirect=["add_dogbook"])
+def test_update_dogbook_invalid_json(client, add_dogbook, payload, status_code):
+    dogbook = add_dogbook(title="Ovcharka Kavkaskaya", field="kormlenie", year="1998")
     resp = client.put(
         f"/api/dogbooks/{dogbook.id}/",
-        {"title": "Ovcharka Kavkaskaya", "field": "dressirovka"},
+        payload,
         content_type="application/json",
     )
-    assert resp.status_code == 400
+    assert resp.status_code == status_code
