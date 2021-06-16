@@ -76,3 +76,25 @@ def test_get_all_dogbooks(client, add_dogbook):
     assert resp.status_code == 200
     assert resp.data[0]["title"] == dogbook_one.title
     assert resp.data[1]["title"] == dogbook_two.title
+
+
+@pytest.mark.django_db
+def test_remove_dogbook(client, add_dogbook):
+    dogbook = add_dogbook(title="Taksa v dome", field="vospitanie", year="1998")
+
+    resp = client.get(f"/api/dogbooks/{dogbook.id}/")
+    assert resp.status_code == 200
+    assert resp.data["title"] == "Taksa v dome"
+
+    resp_two = client.delete(f"/api/dogbooks/{dogbook.id}/")
+    assert resp_two.status_code == 204
+
+    resp_three = client.get("/api/dogbooks/")
+    assert resp_three.status_code == 200
+    assert len(resp_three.data) == 0
+
+
+@pytest.mark.django_db
+def test_remove_dogbook_incorrect_id(client):
+    resp = client.delete(f"/api/dogbooks/99/")
+    assert resp.status_code == 404

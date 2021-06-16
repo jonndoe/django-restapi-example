@@ -32,3 +32,8 @@ class DogbookDetail(APIView):
         dogbook = self.get_object(pk)
         serializer = DogbookSerializer(dogbook)
         return Response(serializer.data)
+
+    def delete(self, request, pk, format=None):
+        dogbook = self.get_object(pk)
+        dogbook.delete()
+        return Response(status=status.HTTP_204_NO_CONTENT)
