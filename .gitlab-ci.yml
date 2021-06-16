@@ -13,6 +13,7 @@ build:
     - docker:dind
   variables:
     DOCKER_DRIVER: overlay2
+    CI_DEBUG_TRACE: "true"
   script:
     - cd app-restapi
     - docker login -u $CI_REGISTRY_USER -p $CI_JOB_TOKEN $CI_REGISTRY
@@ -34,13 +35,10 @@ test:
     POSTGRES_USER: runner
     POSTGRES_PASSWORD: runner
     DATABASE_TEST_URL: postgresql://runner:runner@postgres:5432/users
+    CI_DEBUG_TRACE: "true"
   script:
     - cd app-restapi
     - pytest -p no:warnings --cov=.
     - flake8 .
     - black --check --exclude=migrations .
     - isort . --check-only
-
-job_name:
-  variables:
-    CI_DEBUG_TRACE: "true"
