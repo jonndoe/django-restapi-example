@@ -32,4 +32,3 @@ class DogbookDetail(APIView):
         dogbook = self.get_object(pk)
         serializer = DogbookSerializer(dogbook)
         return Response(serializer.data)
-

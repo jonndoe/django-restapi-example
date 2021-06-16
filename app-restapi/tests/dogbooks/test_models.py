@@ -2,6 +2,7 @@ import pytest
 
 from dogbooks.models import Dogbook
 
+
 @pytest.mark.django_db
 def test_dogbook_model():
     dogbook = Dogbook(title="Kavkaskaya Ovcharka", field="vospitanie", year="2003")

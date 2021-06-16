@@ -12,11 +12,20 @@ class UserAdmin(DefaultUserAdmin):
 @admin.register(Dogbook)
 class MovieAdmin(admin.ModelAdmin):
     fields = (
-        "title", "field", "year", "created_date", "updated_date",
+        "title",
+        "field",
+        "year",
+        "created_date",
+        "updated_date",
     )
     list_display = (
-        "title", "field", "year", "created_date", "updated_date",
+        "title",
+        "field",
+        "year",
+        "created_date",
+        "updated_date",
     )
     readonly_fields = (
-        "created_date", "updated_date",
+        "created_date",
+        "updated_date",
     )

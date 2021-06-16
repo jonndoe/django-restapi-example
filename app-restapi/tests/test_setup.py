@@ -7,6 +7,7 @@ def test_hello_world():
     assert "hello_world" == "hello_world"
     assert "foo" != "bar"
 
+
 # Follow Given_when_then framework to write tests
 def test_sayhi(client):
     # Given - the state of the application before the test runs

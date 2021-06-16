@@ -19,7 +19,7 @@ from django.urls import include, path
 from .views import sayhi
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('sayhi/', sayhi, name="sayhi"),
+    path("admin/", admin.site.urls),
+    path("sayhi/", sayhi, name="sayhi"),
     path("", include("dogbooks.urls")),
 ]

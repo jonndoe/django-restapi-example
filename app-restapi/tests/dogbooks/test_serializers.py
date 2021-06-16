@@ -5,7 +5,7 @@ def test_valid_movie_serializer():
     valid_serializer_data = {
         "title": "Nemetskaya Ovcharka",
         "field": "vospitanie",
-        "year": "2003"
+        "year": "2003",
     }
     serializer = DogbookSerializer(data=valid_serializer_data)
     assert serializer.is_valid()
@@ -15,10 +15,7 @@ def test_valid_movie_serializer():
 
 
 def test_invalid_movie_serializer():
-    invalid_serializer_data = {
-        "title": "Spaniell",
-        "field": "uhod"
-    }
+    invalid_serializer_data = {"title": "Spaniell", "field": "uhod"}
     serializer = DogbookSerializer(data=invalid_serializer_data)
     assert not serializer.is_valid()
     assert serializer.validated_data == {}
