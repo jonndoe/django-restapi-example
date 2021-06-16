@@ -96,8 +96,9 @@ def test_remove_dogbook(client, add_dogbook):
 
 @pytest.mark.django_db
 def test_remove_dogbook_incorrect_id(client):
-    resp = client.delete(f"/api/dogbooks/99/")
+    resp = client.delete(f'{"/api/dogbooks/99/"}')
     assert resp.status_code == 404
+
 
 @pytest.mark.django_db
 def test_update_dogbook(client, add_dogbook):
@@ -106,7 +107,7 @@ def test_update_dogbook(client, add_dogbook):
     resp = client.put(
         f"/api/dogbooks/{dogbook.id}/",
         {"title": "Ovcharka pitanie", "field": "kormlenie", "year": "1997"},
-        content_type="application/json"
+        content_type="application/json",
     )
     assert resp.status_code == 200
     assert resp.data["title"] == "Ovcharka pitanie"
@@ -120,15 +121,19 @@ def test_update_dogbook(client, add_dogbook):
 
 @pytest.mark.django_db
 def test_update_dogbook_incorrect_id(client):
-    resp = client.put(f"/api/dogbooks/99/")
+    resp = client.put(f'{"/api/dogbooks/99/"}')
     assert resp.status_code == 404
 
 
 @pytest.mark.django_db
-@pytest.mark.parametrize("add_dogbook, payload, status_code", [
-    ["add_dogbook", {}, 400],
-    ["add_dogbook",{"title": "Ovcharka Kavkaskaya", "field": "kormlenie"}, 400],
-], indirect=["add_dogbook"])
+@pytest.mark.parametrize(
+    "add_dogbook, payload, status_code",
+    [
+        ["add_dogbook", {}, 400],
+        ["add_dogbook", {"title": "Ovcharka Kavkaskaya", "field": "kormlenie"}, 400],
+    ],
+    indirect=["add_dogbook"],
+)
 def test_update_dogbook_invalid_json(client, add_dogbook, payload, status_code):
     dogbook = add_dogbook(title="Ovcharka Kavkaskaya", field="kormlenie", year="1998")
     resp = client.put(
