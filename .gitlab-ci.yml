@@ -14,7 +14,7 @@ build:
   variables:
     DOCKER_DRIVER: overlay2
   script:
-    - cd app
+    - cd app-restapi
     - docker login -u $CI_REGISTRY_USER -p $CI_JOB_TOKEN $CI_REGISTRY
     - docker pull $IMAGE:latest || true
     - docker build
@@ -35,7 +35,7 @@ test:
     POSTGRES_PASSWORD: runner
     DATABASE_TEST_URL: postgresql://runner:runner@postgres:5432/users
   script:
-    - cd app
+    - cd app-restapi
     - pytest -p no:warnings --cov=.
     - flake8 .
     - black --check --exclude=migrations .
