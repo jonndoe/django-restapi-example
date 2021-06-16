@@ -64,7 +64,7 @@ def test_get_single_dogbook(client, add_dogbook):
 
 
 def test_get_single_dogbook_incorrect_id(client):
-    resp = client.get(f"/api/dogbooks/gogogo/")
+    resp = client.get(f'{"/api/dogbooks/gogogo/"}')
     assert resp.status_code == 404
 
 
@@ -72,7 +72,7 @@ def test_get_single_dogbook_incorrect_id(client):
 def test_get_all_dogbooks(client, add_dogbook):
     dogbook_one = add_dogbook(title="Spanielle", field="kormlenie", year="2005")
     dogbook_two = add_dogbook("Pudel", "vospitanie", "2013")
-    resp = client.get(f"/api/dogbooks/")
+    resp = client.get(f"{'/api/dogbooks/'}")
     assert resp.status_code == 200
     assert resp.data[0]["title"] == dogbook_one.title
     assert resp.data[1]["title"] == dogbook_two.title
