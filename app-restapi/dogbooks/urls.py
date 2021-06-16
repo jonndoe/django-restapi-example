@@ -1,7 +1,6 @@
 from django.urls import path
 
-from .views import DogbookList, DogbookDetail
-
+from .views import DogbookDetail, DogbookList
 
 urlpatterns = [
     path("api/dogbooks/", DogbookList.as_view()),
